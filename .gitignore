@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# C++ Build
+cpp/build/
+cpp/cmake-build-*/
+*.o
+*.a
+*.dylib
+
+# PyTorch
+*.pt
+*.pth
+*.onnx
+
+# Experiment outputs
+experiments/*/checkpoints/
+experiments/*/logs/
+
+# Data (keep structure, ignore large files)
+data/raw/*.csv
+data/raw/*.parquet
+!data/raw/.gitkeep
+data/processed/*.csv
+data/processed/*.parquet
+!data/processed/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env

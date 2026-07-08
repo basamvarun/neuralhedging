@@ -1,0 +1,76 @@
+backtesting:
+  include_premium: true
+  strategies:
+  - no_hedge
+  - bs_delta_hedge
+  - deep_hedge
+black_scholes:
+  fixed_sigma: 0.6
+dashboard:
+  port: 8501
+  theme: dark
+data:
+  expiry_file: 20260205_option_minute_prices_expiry.csv
+  non_expiry_file: 20260204_option_minute_prices_non_expiry.csv
+  processed_dir: data/processed
+  raw_dir: data/raw
+experiment:
+  description: LSTM hedger trained with transaction costs enabled
+  name: cost_aware_lstm_experiment
+  seed: 42
+iv_solver:
+  max_iterations: 100
+  method: bisection
+  tolerance: 1.0e-05
+  vol_lower_bound: 0.001
+  vol_upper_bound: 5.0
+model:
+  architecture: lstm
+  dropout: 0.1
+  hidden_size: 32
+  input_features:
+  - moneyness
+  - time_to_expiry
+  - implied_volatility
+  - delta
+  - gamma
+  - theta
+  - vega
+  - prev_hedge_position
+  num_layers: 1
+option:
+  expiration: '2026-02-05 15:30:00'
+  option_type: call
+  risk_free_rate: 0.05
+  strike: 2570000.0
+  underlying: NIFTY
+output:
+  experiments_dir: experiments
+  save_metrics: true
+  save_model: true
+  save_plots: true
+risk:
+  cvar_alpha: 0.05
+  var_alpha: 0.05
+simulation:
+  drift: 0.05
+  model: gbm
+  num_paths: 2500
+  seed: 42
+  volatility: 0.6
+training:
+  batch_size: 64
+  cvar_alpha: 0.05
+  early_stopping:
+    enabled: true
+    min_delta: 0.0001
+    patience: 15
+  epochs: 100
+  grad_clip_norm: 1.0
+  learning_rate: 0.001
+  loss_function: cvar
+  optimizer: adam
+  validation_split: 0.2
+transaction_costs:
+  cost_rate: 0.005
+  enabled: true

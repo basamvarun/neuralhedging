@@ -1,0 +1,18 @@
+# Override: Dense hedger experiment (Experiment A — notebook-faithful)
+experiment:
+  name: "dense_hedger_experiment"
+  description: "Feedforward net with manual recurrence — notebook baseline"
+
+model:
+  architecture: "dense"
+  input_features:
+    - "spot_price"
+    - "bs_delta"
+    - "prev_hedge_position"
+  hidden_size: 32
+  num_layers: 1
+  dropout: 0.0
+
+simulation:
+  num_paths: 1000
+

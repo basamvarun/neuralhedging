@@ -1,0 +1,18 @@
+{
+  "deep_hedger": {
+    "label": "Deep Hedger LSTM (Test)",
+    "mean_pnl": -40756.32421875,
+    "std_pnl": 26064.1484375,
+    "var": -86955.6328125,
+    "cvar": -101261.828125,
+    "alpha": 0.05
+  },
+  "bs_hedge": {
+    "label": "BS Delta Hedge (Test)",
+    "mean_pnl": -38756.38671875,
+    "std_pnl": 1173.9163818359375,
+    "var": -40689.90625,
+    "cvar": -41512.3515625,
+    "alpha": 0.05
+  }
+}

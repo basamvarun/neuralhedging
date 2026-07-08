@@ -1,0 +1,18 @@
+{
+  "deep_hedger": {
+    "label": "Deep Hedger DENSE (Test)",
+    "mean_pnl": -39657.0625,
+    "std_pnl": 10261.34765625,
+    "var": -54343.8359375,
+    "cvar": -59917.55078125,
+    "alpha": 0.05
+  },
+  "bs_hedge": {
+    "label": "BS Delta Hedge (Test)",
+    "mean_pnl": -38756.38671875,
+    "std_pnl": 1173.9163818359375,
+    "var": -40689.90625,
+    "cvar": -41512.3515625,
+    "alpha": 0.05
+  }
+}

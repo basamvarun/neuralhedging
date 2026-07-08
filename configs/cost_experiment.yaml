@@ -1,0 +1,17 @@
+# Override: Fast Cost-aware LSTM experiment
+experiment:
+  name: "cost_aware_lstm_experiment"
+  description: "LSTM hedger trained with transaction costs enabled"
+
+model:
+  architecture: "lstm"
+  hidden_size: 32
+  num_layers: 1
+  dropout: 0.1
+
+simulation:
+  num_paths: 2500
+
+transaction_costs:
+  enabled: true
+  cost_rate: 0.005  # 0.5% transaction cost (50 bps)

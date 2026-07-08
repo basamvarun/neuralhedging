@@ -1,0 +1,90 @@
+# QuantEdge Default Experiment Configuration
+
+experiment:
+  name: "default_experiment"
+  description: "NIFTY ATM call option — BS vs Deep Hedging comparison"
+  seed: 42
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  expiry_file: "20260205_option_minute_prices_expiry.csv"
+  non_expiry_file: "20260204_option_minute_prices_non_expiry.csv"
+
+option:
+  underlying: "NIFTY"
+  strike: 2570000.0
+  option_type: "call"
+  expiration: "2026-02-05 15:30:00"
+  risk_free_rate: 0.05
+
+black_scholes:
+  fixed_sigma: 0.6
+
+iv_solver:
+  method: "bisection"
+  tolerance: 1.0e-5
+  max_iterations: 100
+  vol_lower_bound: 0.001
+  vol_upper_bound: 5.0
+
+simulation:
+  model: "gbm"
+  num_paths: 10000
+  drift: 0.05
+  volatility: 0.6
+  seed: 42
+
+model:
+  architecture: "lstm"       # "lstm", "gru", or "dense"
+  input_features:
+    - "moneyness"
+    - "time_to_expiry"
+    - "implied_volatility"
+    - "delta"
+    - "gamma"
+    - "theta"
+    - "vega"
+    - "prev_hedge_position"
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.1
+
+training:
+  epochs: 100
+  batch_size: 64
+  learning_rate: 0.001
+  optimizer: "adam"
+  loss_function: "cvar"
+  cvar_alpha: 0.05
+  grad_clip_norm: 1.0
+  validation_split: 0.2
+  early_stopping:
+    enabled: true
+    patience: 15
+    min_delta: 1.0e-4
+
+transaction_costs:
+  enabled: false
+  cost_rate: 0.0001
+
+backtesting:
+  strategies:
+    - "no_hedge"
+    - "bs_delta_hedge"
+    - "deep_hedge"
+  include_premium: true
+
+risk:
+  var_alpha: 0.05
+  cvar_alpha: 0.05
+
+dashboard:
+  port: 8501
+  theme: "dark"
+
+output:
+  experiments_dir: "experiments"
+  save_model: true
+  save_plots: true
+  save_metrics: true
