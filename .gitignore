@@ -40,12 +40,8 @@ cpp/cmake-build-*/
 experiments/*/checkpoints/
 experiments/*/logs/
 
-# Data (keep structure, ignore large files)
-data/raw/*.csv
-data/raw/*.parquet
+# Data
 !data/raw/.gitkeep
-data/processed/*.csv
-data/processed/*.parquet
 !data/processed/.gitkeep
 
 # OS
